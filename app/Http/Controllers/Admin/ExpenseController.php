@@ -15,8 +15,9 @@ class ExpenseController extends Controller
 
         $expenses = Expense::with('apartment')
         ->select('expenses.*', DB::raw('SUM(amount) as sum'))
-        ->groupBy('apartment_id')
+        ->groupBy('apartment_id', 'expenses.id')
         ->paginate($request->get('per_page', 50));
+
         return response()->json($expenses, 200);
     }
 
