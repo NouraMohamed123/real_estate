@@ -49,6 +49,7 @@ class ApartmentController extends Controller
 
     public function store(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
             'apartment_name' => 'required',
             'apartment_number' => 'required',
@@ -73,7 +74,7 @@ class ApartmentController extends Controller
         $apartment = Apartment::create([
             'apartment_name' => $request->apartment_name,
             'apartment_number' => $request->apartment_number,
-            'owner_id' => Auth::guard('users')->user()->id,
+            'owner_id' => Auth::user()->id,
             'apartment_address' => $request->apartment_address,
             'owner_phone' => $request->owner_phone,
             'photo' => $photo,
