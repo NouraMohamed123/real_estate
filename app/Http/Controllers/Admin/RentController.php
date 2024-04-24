@@ -69,7 +69,7 @@ class RentController extends Controller
         $rents->update([
             'description' =>$request->description ,
             'amount' =>$request-> description,
-            'apartment_id' => $request->description,
+            'apartment_id' => $request->apartment_id,
         ]);
 
         return response()->json($rents, 200);
