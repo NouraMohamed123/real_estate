@@ -91,10 +91,39 @@ class ApartmentController extends Controller
     }
 
     public function show($id)
-    {
-        $apartment = Apartment::findOrFail($id);
-        return response()->json($apartment, 200);
+{
+    $user = Auth::user();
+
+    // Start the query to find the apartment with eager loaded relationships
+    $query = Apartment::with(['rents', 'expenses']);
+
+    // If the user is not of type 1, ensure they are authorized to view the apartment
+    if ($user->type != 1) {
+        $query->where('owner_id', $user->id);
     }
+
+    // Retrieve the specific apartment by ID
+    $apartment = $query->findOrFail($id);
+
+    // Calculate the totals for this apartment
+    $expense_amount = $apartment->expenses->sum('amount');
+    $rent_amount = $apartment->rents->sum('amount');
+    $total_amount = $rent_amount - $expense_amount;
+
+    // Append calculated total amount to the apartment object
+    $apartment->total_amount = $total_amount;
+
+    // Prepare the response data
+    $data = [
+        'apartment' => $apartment,
+        'total_amount' => $total_amount,
+        'total_expense_amount' => $expense_amount,
+        'total_rent_amount' => $rent_amount,
+    ];
+
+    return response()->json($data, 200);
+}
+
 
     public function update(Request $request, $id)
     {
