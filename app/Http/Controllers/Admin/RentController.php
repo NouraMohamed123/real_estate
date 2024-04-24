@@ -68,7 +68,7 @@ class RentController extends Controller
 
         $rents->update([
             'description' =>$request->description ,
-            'amount' =>$request-> description,
+            'amount' =>$request->amount,
             'apartment_id' => $request->apartment_id,
         ]);
 
