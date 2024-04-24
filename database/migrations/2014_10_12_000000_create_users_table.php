@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->string('password');
             $table->string('roles_name')->nullable();
+            $table->integer('type')->default(1);
             $table->timestamps();
         });
     }
