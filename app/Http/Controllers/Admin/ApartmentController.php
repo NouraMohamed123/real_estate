@@ -15,35 +15,43 @@ class ApartmentController extends Controller
 {
     public function index(Request $request)
     {
-        $user = Auth::guard('users')->user();
-        $apartments = Apartment::with('rents', 'expenses')
-        ->where('owner_id', $user->id)
-        ->paginate($request->get('per_page', 50));
 
-    $total_total_amount = 0;
-    $total_expense_amount = 0;
-    $total_rent_amount = 0;
+        $user = Auth::user();
+        $query = Apartment::with(['rents', 'expenses']);
 
-    foreach ($apartments as $apartment) {
-        $expense_amount = $apartment->expenses->sum('amount');
-        $rent_amount = $apartment->rents->sum('amount');
-        $total_amount = $rent_amount - $expense_amount;
-        $apartment->total_amount = $total_amount;
+        if ($user->type != 1) {
+            $query = $query->where('owner_id', $user->id);
+        }
+        $apartments = $query->paginate($request->get('per_page', 50));
 
-        $total_total_amount += $total_amount;
-        $total_expense_amount += $expense_amount;
-        $total_rent_amount += $rent_amount;
-    }
+        $total_total_amount = 0;
+        $total_expense_amount = 0;
+        $total_rent_amount = 0;
 
-    $data = [
-        'apartments' => $apartments,
-        'total_total_amount' => $total_total_amount,
-        'total_expense_amount' => $total_expense_amount,
-        'total_rent_amount' => $total_rent_amount,
-    ];
+        // Calculate totals for each apartment
+        foreach ($apartments as $apartment) {
+            $expense_amount = $apartment->expenses->sum('amount');
+            $rent_amount = $apartment->rents->sum('amount');
+            $total_amount = $rent_amount - $expense_amount;
+
+            $apartment->total_amount = $total_amount;
+
+            $total_total_amount += $total_amount;
+            $total_expense_amount += $expense_amount;
+            $total_rent_amount += $rent_amount;
+        }
+
+        // Prepare the response data
+        $data = [
+            'apartments' => $apartments,
+            'total_total_amount' => $total_total_amount,
+            'total_expense_amount' => $total_expense_amount,
+            'total_rent_amount' => $total_rent_amount,
+        ];
 
         return response()->json($data, 200);
     }
+
 
 
     public function store(Request $request)
