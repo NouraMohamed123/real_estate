@@ -13,12 +13,14 @@ class ExpenseController extends Controller
     public function index(Request $request)
     {
 
-        $expenses = Expense::with('apartment')
-        ->select('expenses.*', DB::raw('SUM(amount) as sum'))
-        ->groupBy('apartment_id', 'expenses.id')
+        $data = Expense::with('apartment')
+        ->select('expenses.*', 'sums.sum')
+        ->join(DB::raw('(SELECT apartment_id, SUM(amount) as sum FROM expenses GROUP BY apartment_id) as sums'), 'expenses.apartment_id', '=', 'sums.apartment_id')
         ->paginate($request->get('per_page', 50));
 
-        return response()->json($expenses, 200);
+    return response()->json($data, 200);
+
+
     }
 
 

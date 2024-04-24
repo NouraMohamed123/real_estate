@@ -13,11 +13,12 @@ class RentController extends Controller
 {
     public function index(Request $request)
     {
-        $rents = Rent::with('apartment')
-        ->select('rents.*', DB::raw('SUM(amount) as sum'))
-        ->groupBy('apartment_id', 'rents.id')
+        $data = Rent::with('apartment')
+        ->select('rents.*', 'sums.sum')
+        ->join(DB::raw('(SELECT apartment_id, SUM(amount) as sum FROM rents GROUP BY apartment_id) as sums'), 'rents.apartment_id', '=', 'sums.apartment_id')
         ->paginate($request->get('per_page', 50));
-    return response()->json($rents, 200);
+
+    return response()->json( $data, 200);
 
     }
 
