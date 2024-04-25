@@ -25,4 +25,8 @@ class Apartment extends Model
     {
         return $this->hasMany(Rent::class);
     }
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'owner_id')->select('id', 'name');
+    }
 }

@@ -17,7 +17,7 @@ class ApartmentController extends Controller
     {
 
         $user = Auth::user();
-        $query = Apartment::with(['rents', 'expenses']);
+        $query = Apartment::with(['rents', 'expenses','owner']);
 
         if ($user->type != 1) {
             $query = $query->where('owner_id', $user->id);
@@ -39,6 +39,7 @@ class ApartmentController extends Controller
             $total_total_amount += $total_amount;
             $total_expense_amount += $expense_amount;
             $total_rent_amount += $rent_amount;
+            // $apartment->owner_name = $apartment->owner->name;
         }
 
         // Prepare the response data
@@ -95,7 +96,7 @@ class ApartmentController extends Controller
     $user = Auth::user();
 
     // Start the query to find the apartment with eager loaded relationships
-    $query = Apartment::with(['rents', 'expenses']);
+    $query = Apartment::with(['rents', 'expenses','owner']);
 
     // If the user is not of type 1, ensure they are authorized to view the apartment
     if ($user->type != 1) {

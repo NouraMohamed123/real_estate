@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('apartment_name');
             $table->string('apartment_number')->nullable();
-            $table->string('photo')->nullable()->nullable();
+            $table->string('photo')->nullable();
             $table->unsignedBigInteger('owner_id');
             $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('apartment_address')->nullable();

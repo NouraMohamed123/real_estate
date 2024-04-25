@@ -41,6 +41,8 @@ class PermissionTableSeeder extends Seeder
             "update-rent",
             "delete-rent",
             "add-rent",
+            "dashboard"
+            
 
 
 
