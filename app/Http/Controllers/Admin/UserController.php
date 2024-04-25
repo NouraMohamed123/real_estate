@@ -37,7 +37,7 @@ class UserController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'date_of_birth' => 'required|date_format:Y/m/d',
+
             'national_id' => 'required|string|max:255',
             'photo' => 'nullable',
             'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
