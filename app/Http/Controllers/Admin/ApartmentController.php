@@ -182,5 +182,16 @@ class ApartmentController extends Controller
         } catch (\Exception $e) {
             return response()->json(['message' => 'حدث خطأ أثناء محاولة حذف الشقة'], 400);
         }
+
+    }
+    public function getApartmentCount()
+    {
+        $count = Apartment::count();
+
+        return response()->json([
+            "successful" => true,
+            "message" => "عملية العرض تمت بنجاح",
+            'data' => $count
+        ]);
     }
 }

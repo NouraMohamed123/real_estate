@@ -47,6 +47,7 @@ Route::post('apartments', [ApartmentController::class, 'store']);
 Route::get('apartments/{id}', [ApartmentController::class, 'show']);
 Route::post('apartments/{id}', [ApartmentController::class, 'update']);
 Route::delete('apartments/{id}', [ApartmentController::class, 'destroy']);
+Route::get('ApartmentCount', [ApartmentController::class, 'getApartmentCount']);
 
 //expenses
 Route::get('expenses', [ExpenseController::class, 'index']);

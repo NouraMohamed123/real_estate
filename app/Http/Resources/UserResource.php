@@ -12,12 +12,12 @@ class UserResource extends JsonResource
      *
      * @return array<string, mixed>
      */
-   
-       
-   
+
+
+
     public function toArray($request)
     {
-        
+
         return [
             'id' => $this->id,
             'name' => $this->name,
@@ -29,7 +29,8 @@ class UserResource extends JsonResource
             'phone' => $this->phone,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'roles_name' => $this->roles->pluck('name')
+            'roles_name' => $this->roles->pluck('name'),
+            'type' => $this->type
         ];
     }
 }

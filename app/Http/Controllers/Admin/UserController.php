@@ -68,6 +68,7 @@ class UserController extends Controller
             'email' => $request->email,
             'roles_name' => $request->roles_name,
             'password' => Hash::make($request->password),
+            'type' => $request->input('type', 1),
         ]);
 
         $user->assignRole([$request->input('roles_name')]);
@@ -88,7 +89,7 @@ class UserController extends Controller
         return new UserResource($user);
     }
 
-    
+
     public function update(Request $request, User $user )
     {
         $validator = Validator::make($request->all(), [
@@ -97,7 +98,7 @@ class UserController extends Controller
             'nationality' => 'nullable|string|max:255',
             'photo' => 'nullable',
             'phone' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-            'email' => 'required|unique:users,email,' . $request->id,
+            'email' => 'required|unique:users,email,' . $user->id,
             'password' => 'required|string|min:8',
             'roles_name' => 'required',
         ]);
@@ -128,6 +129,7 @@ class UserController extends Controller
             'email' =>$request->email,
             'roles_name' => $request->roles_name,
             'password' => Hash::make($request->password),
+            'type' => $request->input('type', $user->type),
         ]);
 
         // Delete existing roles
