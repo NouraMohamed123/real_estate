@@ -169,4 +169,14 @@ class UserController extends Controller
             'data' => $count
         ]);
     }
+    public function getOwnerCount()
+{
+    $count = User::where('type', 0)->count();
+
+    return response()->json([
+        "successful" => true,
+        "message" => "عملية العرض تمت بنجاح",
+        'data' => $count
+    ]);
+}
 }

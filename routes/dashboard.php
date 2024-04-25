@@ -30,6 +30,7 @@ Route::post('/users', [UserController::class, 'store']);
 Route::post('/users/{user}', [UserController::class, 'update']);
 Route::delete('/users/{user}', [UserController::class, 'destroy']);
 Route::get('getUserCount', [UserController::class, 'getUserCount']);
+Route::get('ownerCount', [UserController::class, 'getOwnerCount']);
 //roles
 Route::get('/roles', [RoleController::class, 'index']);
 Route::get('/roles/{role}', [RoleController::class, 'show']);
