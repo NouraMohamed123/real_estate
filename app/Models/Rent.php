@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Rent extends Model
 {
     use HasFactory;
-    
-    protected $fillable = ['apartment_id', 'amount', 'description'];
+
+    protected $fillable = ['apartment_id', 'amount', 'description','end_date','start_date','discount_percentage','total_amount','percentage'];
 
     public function apartment()
     {

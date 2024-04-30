@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\ApartmentController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ExpenseController;
 use App\Http\Controllers\Admin\RentController;
 
@@ -63,6 +64,13 @@ Route::post('rents', [RentController::class, 'store']);
 Route::get('rents/{id}', [RentController::class, 'show']);
 Route::post('rents/{id}', [RentController::class, 'update']);
 Route::delete('rents/{id}', [RentController::class, 'destroy']);
+
+//category
+Route::get('categories', [CategoryController::class, 'index']);
+Route::post('categories', [CategoryController::class, 'store']);
+Route::get('categories/{category}', [CategoryController::class, 'show']);
+Route::post('categories/{category}', [CategoryController::class, 'update']);
+Route::delete('categories/{category}', [CategoryController::class, 'destroy']);
 
 });
 
