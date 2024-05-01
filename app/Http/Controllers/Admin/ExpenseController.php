@@ -68,8 +68,8 @@ class ExpenseController extends Controller
             'apartment_id' => 'required|exists:apartments,id',
             'amount' => 'required',
             'description' => 'nullable',
-            'start_date' => 'required|date_format:m/d/Y|after_or_equal:today',
-            'end_date' => 'required|date_format:m/d/Y|after:start_date',
+            'start_date' => 'required|date_format:m-d-Y|after_or_equal:today',
+            'end_date' => 'required|date_format:m-d-Y|after:start_date',
             'category_id' => 'required|exists:categories,id',
         ]);
 
@@ -110,8 +110,8 @@ class ExpenseController extends Controller
             'apartment_id' => 'required|exists:apartments,id',
             'amount' => 'required',
             'description' => 'nullable',
-            'start_date' => 'required|date_format:m/d/Y|after_or_equal:today',
-            'end_date' => 'required|date_format:m/d/Y|after:start_date',
+            'start_date' => 'required|date_format:m-d-Y|after_or_equal:today',
+            'end_date' => 'required|date_format:m-d-Y|after:start_date',
             'category_id' => 'required|exists:categories,id',
         ]);
 

@@ -33,8 +33,8 @@ class RentController extends Controller
             'discount_percentage'=>'required',
 
             'description' => 'nullable',
-            'start_date' => 'required|date_format:m/d/Y|after_or_equal:today',
-            'end_date' => 'required|date_format:m/d/Y|after:start_date',
+            'start_date' => 'required|date_format:m-d-Y|after_or_equal:today',
+            'end_date' => 'required|date_format:m-d-Y|after:start_date',
 
         ]);
 
@@ -127,8 +127,8 @@ class RentController extends Controller
         'amount' => 'required',
         'discount_percentage' => 'required',
         'description' => 'nullable',
-        'start_date' => 'required|date_format:m/d/Y|after_or_equal:today',
-        'end_date' => 'required|date_format:m/d/Y|after:start_date',
+        'start_date' => 'required|date_format:m-d-Y|after_or_equal:today',
+        'end_date' => 'required|date_format:m-d-Y|after:start_date',
     ]);
 
     if ($validator->fails()) {
