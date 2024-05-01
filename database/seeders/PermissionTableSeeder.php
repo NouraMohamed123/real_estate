@@ -25,7 +25,7 @@ class PermissionTableSeeder extends Seeder
             // "delete-role",
             // "add-role",
             // "setting",
-             "update-or-create-setting",
+             "update-create-setting",
             // "apartment",
             // "apartment-list",
             // "update-apartment",
