@@ -9,7 +9,7 @@ class Expense extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['apartment_id', 'description', 'amount','end_date','start_date','category_id'];
+    protected $fillable = ['apartment_id', 'description', 'amount','start_date','category_id'];
 
     public function apartment()
     {

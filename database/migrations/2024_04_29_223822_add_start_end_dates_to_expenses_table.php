@@ -15,7 +15,7 @@ return new class extends Migration
             $table->date('start_date')->nullable()->after('amount'); // Adding nullable start date column after the amount column
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->date('end_date')->nullable()->after('start_date'); // Adding nullable end date column after the start date column
+       
         });
     }
 
