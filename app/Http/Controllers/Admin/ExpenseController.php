@@ -111,7 +111,7 @@ class ExpenseController extends Controller
             'amount' => 'required',
             'description' => 'nullable',
             'start_date' => 'required|date_format:Y-m-d|after_or_equal:today',
-            'end_date' => 'required|date_format:Y-m-d|after:start_date',
+            
             'category_id' => 'required|exists:categories,id',
         ]);
 
@@ -123,7 +123,7 @@ class ExpenseController extends Controller
 
         // Convert dates to Y-m-d format
         $start_date = date('Y-m-d', strtotime($request->start_date));
-        $end_date = date('Y-m-d', strtotime($request->end_date));
+
 
 
         $expenses->update([
@@ -131,7 +131,7 @@ class ExpenseController extends Controller
             'amount' =>$request-> amount,
             'apartment_id' => $request->apartment_id,
             'start_date' => $start_date,
-            'end_date' => $end_date,
+           
             'category_id' => $request->category_id,
         ]);
 
