@@ -82,7 +82,7 @@ class ApartmentController extends Controller
         $apartment = Apartment::create([
             'apartment_name' => $request->apartment_name,
             'apartment_number' => $request->apartment_number,
-            'owner_id' => Auth::user()->id,
+            'owner_id' => $request->owner_id,
             'apartment_address' => $request->apartment_address,
             'owner_phone' => $request->owner_phone,
             'photo' => $photo,
@@ -153,7 +153,7 @@ class ApartmentController extends Controller
         $apartment->update([
             'apartment_name' => $request->apartment_name,
             'apartment_number' => $request->apartment_number,
-            'owner_id' => Auth::guard('users')->user()->id,
+            'owner_id' => $request->owner_id,
             'apartment_address' => $request->apartment_address,
             'owner_phone' => $request->owner_phone,
             'photo' => $photo,
