@@ -33,8 +33,8 @@ class RentController extends Controller
             'discount_percentage'=>'required',
 
             'description' => 'nullable',
-            'start_date' => 'required|date_format:Y-m-d|after_or_equal:today',
-            'end_date' => 'required|date_format:Y-m-d|after:start_date',
+            'start_date' => 'required|date_format:Y-m-d',
+            'end_date' => 'required|date_format:Y-m-d',
 
         ]);
 
