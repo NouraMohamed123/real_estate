@@ -31,7 +31,7 @@ class ApartmentController extends Controller
         // Calculate totals for each apartment
         foreach ($apartments as $apartment) {
             $expense_amount = $apartment->expenses->sum('amount');
-            $rent_amount = $apartment->rents->sum('amount');
+            $rent_amount = $apartment->rents->sum('total_amount');
             $total_amount = $rent_amount - $expense_amount;
 
             $apartment->total_amount = $total_amount;
